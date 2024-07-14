@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    username: root
+    password: Liverpool11.
+    url: jdbc:mysql://localhost:3306/movies
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: "chamrai1992@gmail.com"
+    password: "Birtamode11@"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+project:
+  poster: posters/
+
+base:
+  url: "http://localhost:8080"
+
+application:
+  name: movieapi-service
