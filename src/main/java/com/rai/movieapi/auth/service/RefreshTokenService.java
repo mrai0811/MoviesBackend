@@ -4,6 +4,7 @@ import com.rai.movieapi.auth.entities.RefreshToken;
 import com.rai.movieapi.auth.entities.User;
 import com.rai.movieapi.auth.repositories.RefreshTokenRepository;
 import com.rai.movieapi.auth.repositories.UserRepository;
+import com.rai.movieapi.exception.CustomException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -42,11 +43,11 @@ public class RefreshTokenService {
 
     public RefreshToken verifyRefreshToken(String refreshToken){
         RefreshToken refToken = refreshTokenRepository.findByRefreshToken(refreshToken)
-                .orElseThrow(()-> new RuntimeException("Refresh token is not found!"));
+                .orElseThrow(()-> new CustomException("Refresh token is not found!"));
 
         if(refToken.getExpirationTime().compareTo(Instant.now()) < 0){
             refreshTokenRepository.delete(refToken);
-            throw new RuntimeException("Refresh Token is expired !");
+            throw new CustomException("Refresh Token is expired !");
         }
         return refToken;
     }

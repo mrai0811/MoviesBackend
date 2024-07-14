@@ -22,4 +22,9 @@ public class GlobalExceptionHandler {
     public ProblemDetail handleEmptyFileException(EmptyFileException ex){
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
+
+    @ExceptionHandler(CustomException.class)
+    public ProblemDetail handleCustomException(CustomException ex){
+        return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
 }
